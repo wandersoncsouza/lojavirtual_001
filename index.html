@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Loja Virtual</title>
+
+  <style>
+        #loja{
+          max-width: 900px;
+          padding: 0 30px;
+          display: flex;
+          flex-direction: row;
+        }
+        #carrinho{
+          max-width: 100%;
+          padding: 0 30px;
+        }
+        p{
+          display: flex;
+        }
+        .imgitem{
+          height: 80px;
+          width: 50px;
+        }
+
+        .imgresize{
+          height: 400px;
+          width: 300px;
+          padding: 5px 20px;
+          border: none;
+          border-radius: 20px;
+          align-items:flex-end;
+        }
+        h2{
+          display: block;
+        }
+
+  </style>
+</head>
+<body>
+  <h2>Loja</h2>
+  <div id="loja">
+
+  </div>
+  <h2>Carrinho</h2>
+  <div id="carrinho">
+
+  </div>
+
+  <script>
+    const items = [
+      {
+        id: 0,
+        nome: 'Camisa Regata Brahma',
+        img: 'img/camisa1.jpg',
+        quantidade: 0,
+        preco: 29.90
+      },
+      {
+        id: 1,
+        nome: 'Cinto Soft Lux',
+        img: 'img/cinto.jpg',
+        quantidade: 0,
+        preco: 15.00
+      },
+      {
+        id: 2,
+        nome: 'Cueca Box Nawes',
+        img: 'img/cueca.jpg',
+        quantidade: 0,
+        preco: 12.00
+      },
+      {
+        id: 3,
+        nome: 'Meias luxo Crohn',
+        img: 'img/meias.jpg',
+        quantidade: 0,
+        preco: 9.70
+      },
+      {
+        id: 4,
+        nome: 'Sandalias Melissas',
+        img: 'img/sandaliaf.jpg',
+        quantidade: 0,
+        preco: 23.50
+      },
+      {
+        id: 5,
+        nome: 'Sandalias Havaianas Comun',
+        img: 'img/sandaliasm.jpg',
+        quantidade: 0,
+        preco: 29.70
+      },
+      {
+        id: 6,
+        nome: 'Bermuda Sublimada Sport',
+        img: 'img/short.jpg',
+        quantidade: 0,
+        preco: 34.40
+      },
+    ]
+
+
+    // Inicializando a loja
+    startstore = () => {
+      var produtos = document.getElementById('loja');
+      items.map((prod)=>{
+        produtos.innerHTML += `
+
+          <div class="item">
+              <img class="imgresize" src="`+prod.img+`"/>
+              <p>`+prod.nome+`</p>
+              <a key="`+prod.id+`" href="#">Add cart</a>
+          </div>
+
+
+        `;
+      })
+    }
+    startstore();
+
+    // Atualizar cart
+    refleshcart = () => {
+      var cart = document.getElementById('carrinho');
+      cart.innerHTML = "";
+        items.map((prod)=>{
+          if(prod.quantidade > 0){
+            cart.innerHTML+= `
+              <p><img class="imgitem"src="`+prod.img+`"> `+prod.nome+` <br>Quantidade:` +prod.quantidade+` <br> Valor: R$`+prod.quantidade*prod.preco+`</p>
+            `;
+          }
+        })
+
+    }
+
+    var buy = document.getElementsByTagName('a');
+    for(var i=0; i < buy.length; i++){
+      buy[i].addEventListener("click", function(){
+        let key = this.getAttribute('key');
+        items[key].quantidade++;
+        refleshcart();
+        return false;
+      })
+    }
+
+  </script>
+</body>
+</html>
