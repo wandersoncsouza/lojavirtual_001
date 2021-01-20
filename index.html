@@ -179,7 +179,16 @@
       buy[i].addEventListener("click", function(){
         let key = this.getAttribute('key');
         items[key].quantidade++;
-        // var vlr_qtd = items[key].preco*items[key].quantidade;
+
+        // var qtd = items[key].quantidade;
+        // console.log(qtd);
+        // console.log(items[key].preco);
+
+        function vlrtotporprod(preco,quantidade){
+	          return preco*quantidade
+        }
+        console.log(parseFloat(vlrtotporprod(items[key].preco, items[key].quantidade)));
+
         refleshcart();
         return false;
       })
