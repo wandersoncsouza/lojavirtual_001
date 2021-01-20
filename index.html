@@ -8,14 +8,23 @@
 
   <style>
         #loja{
-          max-width: 900px;
-          padding: 0 30px;
+          padding: 15px 30px;
+          width: 90%;
+          margin: 0 auto;
           display: flex;
-          flex-direction: row;
+          flex-flow: row wrap;
+          /* Navegadores antigos */
+          display: -webkit-box;
+          display: -moz-box;
+          display: -ms-flexbox;
+          display: -webkit-flex;
+          -webkit-flex-flow: row wrap;
         }
         #carrinho{
           max-width: 100%;
           padding: 0 30px;
+          display: flex;
+          flex-flow: row wrap;
         }
         p{
           display: flex;
@@ -25,18 +34,46 @@
           width: 50px;
         }
 
-        .imgresize{
-          height: 400px;
-          width: 300px;
-          padding: 5px 20px;
-          border: none;
-          border-radius: 20px;
-          align-items:flex-end;
-        }
-        h2{
-          display: block;
+        .item{
+          border: solid 1px #0ff;
+          border-radius: 5px;
+          margin: 6px;
+          padding: 2px;
+          align-items: center;
+          display: flex;
+          flex-flow: column wrap;
+          flex-basis: 15%;
+
+          display: -webkit-box;
+          display: -moz-box;
+          display: -ms-flexbox;
+          display: -webkit-flex;
+          -webkit-flex-flow: column wrap;
         }
 
+        .item div { flex-grow: 1;}
+        .item a{ text-transform: uppercase;}
+
+        .imgresize{
+          height: 250px;
+          width: 150px;
+          padding: 5px 20px;
+          border-radius: 20px;
+        }
+
+        h2{
+          display: block;
+          text-transform: uppercase;
+          align-items: center;
+        }
+
+
+        @media (max-width: 727px){
+            .item{
+                flex-basis:100%;
+                margin: 15px 0;
+            }
+        }
   </style>
 </head>
 <body>
@@ -44,6 +81,7 @@
   <div id="loja">
 
   </div>
+
   <h2>Carrinho</h2>
   <div id="carrinho">
 
@@ -112,9 +150,10 @@
           <div class="item">
               <img class="imgresize" src="`+prod.img+`"/>
               <p>`+prod.nome+`</p>
-              <a key="`+prod.id+`" href="#">Add cart</a>
+              <div>
+                <a key="`+prod.id+`" href="#">Add cart</a>
+              </div>
           </div>
-
 
         `;
       })
@@ -140,10 +179,12 @@
       buy[i].addEventListener("click", function(){
         let key = this.getAttribute('key');
         items[key].quantidade++;
+        // var vlr_qtd = items[key].preco*items[key].quantidade;
         refleshcart();
         return false;
       })
     }
+
 
   </script>
 </body>
