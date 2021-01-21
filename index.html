@@ -30,7 +30,7 @@
           display: flex;
         }
         .imgitem{
-          height: 80px;
+          height: 50px;
           width: 50px;
         }
 
@@ -180,14 +180,12 @@
         let key = this.getAttribute('key');
         items[key].quantidade++;
 
-        // var qtd = items[key].quantidade;
-        // console.log(qtd);
-        // console.log(items[key].preco);
-
         function vlrtotporprod(preco,quantidade){
 	          return preco*quantidade
         }
-        console.log(parseFloat(vlrtotporprod(items[key].preco, items[key].quantidade)));
+        var vlrprod = vlrtotporprod(items[key].preco, items[key].quantidade);
+        //console.log(parseFloat(vlrprod.toFixed(2)));
+        console.log(vlrprod.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
 
         refleshcart();
         return false;
