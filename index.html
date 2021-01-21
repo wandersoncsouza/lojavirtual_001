@@ -150,6 +150,7 @@
           <div class="item">
               <img class="imgresize" src="`+prod.img+`"/>
               <p>`+prod.nome+`</p>
+              <p>`+prod.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })+`</p>
               <div>
                 <a key="`+prod.id+`" href="#">Add cart</a>
               </div>
@@ -166,14 +167,17 @@
       cart.innerHTML = "";
         items.map((prod)=>{
           if(prod.quantidade > 0){
-            cart.innerHTML+= `
-              <p><img class="imgitem"src="`+prod.img+`"> `+prod.nome+` <br>Quantidade:` +prod.quantidade+` <br> Valor: R$`+prod.quantidade*prod.preco+`</p>
+            var vlr2 = prod.quantidade*prod.preco;
+              var arredonda = vlr2.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                cart.innerHTML+= `
+                  <p><img class="imgitem"src="`+prod.img+`"> `+prod.nome+` <br>Quantidade:` +prod.quantidade+` <br> Valor:`+arredonda+`</p>
             `;
           }
         })
 
     }
 
+    var total = 0;
     var buy = document.getElementsByTagName('a');
     for(var i=0; i < buy.length; i++){
       buy[i].addEventListener("click", function(){
@@ -184,14 +188,15 @@
 	          return preco*quantidade
         }
         var vlrprod = vlrtotporprod(items[key].preco, items[key].quantidade);
-        //console.log(parseFloat(vlrprod.toFixed(2)));
-        console.log(vlrprod.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
+        console.log(vlrprod);
+
+        total = total + items[key].preco;
+        // console.log(total);
 
         refleshcart();
         return false;
       })
     }
-
 
   </script>
 </body>
