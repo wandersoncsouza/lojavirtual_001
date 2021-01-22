@@ -8,7 +8,7 @@
 
   <style>
         #loja{
-          padding: 15px 30px;
+          padding: 10px 20px;
           width: 90%;
           margin: 0 auto;
           display: flex;
@@ -22,7 +22,7 @@
         }
         #carrinho{
           max-width: 100%;
-          padding: 0 30px;
+          padding: 3px 30px;
           display: flex;
           flex-flow: row wrap;
         }
@@ -35,10 +35,9 @@
         }
 
         .item{
-          border: solid 1px #0ff;
           border-radius: 5px;
           margin: 6px;
-          padding: 2px;
+          padding: 1px;
           align-items: center;
           display: flex;
           flex-flow: column wrap;
@@ -49,22 +48,27 @@
           display: -ms-flexbox;
           display: -webkit-flex;
           -webkit-flex-flow: column wrap;
+          box-shadow: 2px 6px 5px 2px #000;
+
         }
 
-        .item div { flex-grow: 1;}
+        .item div {
+          flex-grow: 1;
+        }
         .item a{ text-transform: uppercase;}
 
         .imgresize{
           height: 250px;
           width: 150px;
-          padding: 5px 20px;
+          padding: 5px 10px;
           border-radius: 20px;
         }
 
         h2{
-          display: block;
+          display: inline-block;
           text-transform: uppercase;
           align-items: center;
+          justify-content: center;
         }
 
 
@@ -85,6 +89,9 @@
   <h2>Carrinho</h2>
   <div id="carrinho">
 
+  </div>
+  <div id="totalizador">
+    <h2>Total da Compra:</h2>
   </div>
 
   <script>
@@ -174,7 +181,6 @@
             `;
           }
         })
-
     }
 
     var total = 0;
@@ -191,7 +197,7 @@
         console.log(vlrprod);
 
         total = total + items[key].preco;
-        // console.log(total);
+        console.log(total);
 
         refleshcart();
         return false;
