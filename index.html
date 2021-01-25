@@ -48,7 +48,7 @@
           display: -ms-flexbox;
           display: -webkit-flex;
           -webkit-flex-flow: column wrap;
-          box-shadow: 2px 6px 5px 2px #000;
+          box-shadow: 0px 0px 10px 1px #999;
 
         }
 
@@ -82,17 +82,11 @@
 </head>
 <body>
   <h2>Loja</h2>
-  <div id="loja">
-
-  </div>
-
+  <div id="loja"></div>
   <h2>Carrinho</h2>
-  <div id="carrinho">
-
-  </div>
-  <div id="totalizador">
-    <h2>Total da Compra:</h2>
-  </div>
+  <div id="carrinho"> </div>
+  <h2>Total da Compra:</h2>
+  <div id="totalizador"></div>
 
   <script>
     const items = [
@@ -147,7 +141,7 @@
       },
     ]
 
-
+    var total = 0;
     // Inicializando a loja
     startstore = () => {
       var produtos = document.getElementById('loja');
@@ -171,6 +165,8 @@
     // Atualizar cart
     refleshcart = () => {
       var cart = document.getElementById('carrinho');
+      var print_total = document.getElementById('totalizador');
+      print_total.innerHTML = "";
       cart.innerHTML = "";
         items.map((prod)=>{
           if(prod.quantidade > 0){
@@ -181,9 +177,12 @@
             `;
           }
         })
+        print_total.innerHTML+= `
+          <p>Valor Total da Compra:`+total+`</p>
+    `;
     }
 
-    var total = 0;
+    // var total = 0;
     var buy = document.getElementsByTagName('a');
     for(var i=0; i < buy.length; i++){
       buy[i].addEventListener("click", function(){
