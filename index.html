@@ -22,16 +22,16 @@
         }
         #carrinho{
           max-width: 100%;
-          padding: 3px 30px;
+          margin: 15px;
+          padding: 5px 30px;
           display: flex;
           flex-flow: row wrap;
+          /* border: 1px black; */
         }
         p{
           display: flex;
-        }
-        .imgitem{
-          height: 50px;
-          width: 50px;
+          margin: auto;
+          border-left: 5px;
         }
 
         .item{
@@ -56,14 +56,6 @@
           flex-grow: 1;
         }
         .item a{ text-transform: uppercase;}
-
-        .imgresize{
-          height: 250px;
-          width: 150px;
-          padding: 5px 10px;
-          border-radius: 20px;
-        }
-
         h2{
           display: inline-block;
           text-transform: uppercase;
@@ -71,13 +63,6 @@
           justify-content: center;
         }
 
-
-        @media (max-width: 727px){
-            .item{
-                flex-basis:100%;
-                margin: 15px 0;
-            }
-        }
   </style>
 </head>
 <body>
@@ -87,55 +72,55 @@
   <div id="carrinho"> </div>
   <h2>Total da Compra:</h2>
   <div id="totalizador"></div>
+  <div id="email">
+    <form class="" action="index.html" method="post">
+      <input type="email" name="email">
+      <input type="submit" name="finaliza" value="Finalizar Compra">
+    </form>
+
+  </div>
 
   <script>
     const items = [
       {
         id: 0,
         nome: 'Camisa Regata Brahma',
-        img: 'img/camisa1.jpg',
         quantidade: 0,
         preco: 29.90
       },
       {
         id: 1,
         nome: 'Cinto Soft Lux',
-        img: 'img/cinto.jpg',
         quantidade: 0,
         preco: 15.00
       },
       {
         id: 2,
         nome: 'Cueca Box Nawes',
-        img: 'img/cueca.jpg',
         quantidade: 0,
         preco: 12.00
       },
       {
         id: 3,
         nome: 'Meias luxo Crohn',
-        img: 'img/meias.jpg',
         quantidade: 0,
         preco: 9.70
       },
       {
         id: 4,
         nome: 'Sandalias Melissas',
-        img: 'img/sandaliaf.jpg',
         quantidade: 0,
         preco: 23.50
       },
       {
         id: 5,
         nome: 'Sandalias Havaianas Comun',
-        img: 'img/sandaliasm.jpg',
         quantidade: 0,
         preco: 29.70
       },
       {
         id: 6,
         nome: 'Bermuda Sublimada Sport',
-        img: 'img/short.jpg',
         quantidade: 0,
         preco: 34.40
       },
@@ -149,7 +134,6 @@
         produtos.innerHTML += `
 
           <div class="item">
-              <img class="imgresize" src="`+prod.img+`"/>
               <p>`+prod.nome+`</p>
               <p>`+prod.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })+`</p>
               <div>
@@ -173,12 +157,12 @@
             var vlr2 = prod.quantidade*prod.preco;
               var arredonda = vlr2.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
                 cart.innerHTML+= `
-                  <p><img class="imgitem"src="`+prod.img+`"> `+prod.nome+` <br>Quantidade:` +prod.quantidade+` <br> Valor:`+arredonda+`</p>
+                  <p> `+prod.nome+` <br>Quantidade:` +prod.quantidade+` <br> Valor:`+arredonda+`</p>
             `;
           }
         })
         print_total.innerHTML+= `
-          <p>Valor Total da Compra:`+total+`</p>
+          <p>Valor Total da Compra:`+total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })+`</p>
     `;
     }
 
@@ -193,11 +177,7 @@
 	          return preco*quantidade
         }
         var vlrprod = vlrtotporprod(items[key].preco, items[key].quantidade);
-        console.log(vlrprod);
-
         total = total + items[key].preco;
-        console.log(total);
-
         refleshcart();
         return false;
       })
