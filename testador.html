@@ -7,11 +7,13 @@
   <title>Document</title>
 </head>
 <body>
+
+  <form id="form">
+    <input type="email" id="campo" placeholder="Insira um e-mail" required>
+    <input type="submit" value="Inserir">
+  </form>
   <div id="email">
-    <form id="form">
-      <input type="email" id="campo" placeholder="Insira um e-mail" required>
-      <input type="submit" value="Inserir">
-    </form>
+
   </div>
 
   <script>
@@ -19,16 +21,16 @@
       //function inserircliente(){
         var cont = 0;
         var form = document.getElementById('form');
-        var campo = document.getElementById('campo');
-
         form.addEventListener('submit', function(e){
-          cont++;
-          for (var i = 0; i < cont.length; i++) {
-            cont[i] = email.value;
+        cont++;
+        console.log(cont);
+
+          for (var i=0; i < cont; i++){
+
+            informacao = document.getElementById('campo').value;
+            console.log(informacao);
+            document.getElementById('email').innerHTML = informacao;
           }
-          console.log(cont);
-
-
           e.preventDefault();
         });
       //}
